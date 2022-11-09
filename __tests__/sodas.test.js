@@ -67,6 +67,17 @@ describe('sodas controller', () => {
       }
     `);
   });
+  it('PUT /sodas/1 should update soda with id #1', async () => {
+    const resp = await request(app).put('/sodas/1').send({ color: 'Yellow' });
+    expect(resp.status).toBe(200);
+    expect(resp.body.color).toBe('Yellow');
+  });
+
+  it.only('GET /sodas/xyz should return a 404', async () => {
+    const resp = await request(app).get('/sodas/456');
+    expect(resp.status).toBe(404);
+  });
+
   afterAll(() => {
     pool.end();
   });

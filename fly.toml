@@ -1,4 +1,4 @@
-# fly.toml file generated for soda-api on 2022-11-09T11:23:01-08:00
+# fly.toml file generated for soda-api on 2022-11-09T12:16:53-08:00
 
 app = "soda-api"
 kill_signal = "SIGINT"
@@ -6,6 +6,7 @@ kill_timeout = 5
 processes = []
 
 [env]
+  PORT = "8080"
 
 [experimental]
   allowed_public_ports = []

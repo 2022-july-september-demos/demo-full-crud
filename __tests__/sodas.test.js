@@ -36,6 +36,18 @@ describe('sodas controller', () => {
       ]
     `);
   });
+  it('#GET /sodas/1 should return soda details', async () => {
+    const resp = await request(app).get('/sodas/1');
+    expect(resp.status).toEqual(200);
+    expect(resp.body).toEqual({
+      color: 'Golden',
+      country: 'Peru',
+      id: '1',
+      image:
+        'https://m.media-amazon.com/images/I/51slcDKrKDL._SY445_PIbundle-12,TopRight,0,0_SX236SY445SH20_.jpg',
+      name: 'Inca Kola',
+    });
+  });
   afterAll(() => {
     pool.end();
   });

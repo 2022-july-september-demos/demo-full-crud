@@ -7,7 +7,7 @@ describe('sodas controller', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('#GET /sodas should return a list of sodas', async () => {
+  it('GET /sodas should return a list of sodas', async () => {
     const resp = await request(app).get('/sodas');
     expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
@@ -36,7 +36,7 @@ describe('sodas controller', () => {
       ]
     `);
   });
-  it('#GET /sodas/1 should return soda details', async () => {
+  it('GET /sodas/1 should return soda details', async () => {
     const resp = await request(app).get('/sodas/1');
     expect(resp.status).toEqual(200);
     expect(resp.body).toEqual({
@@ -47,6 +47,25 @@ describe('sodas controller', () => {
         'https://m.media-amazon.com/images/I/51slcDKrKDL._SY445_PIbundle-12,TopRight,0,0_SX236SY445SH20_.jpg',
       name: 'Inca Kola',
     });
+  });
+  it('POST /sodas should create a new soda in the database', async () => {
+    const newSoda = {
+      name: 'Bahamas Goombay Punch',
+      country: 'Bahamas',
+      color: 'Yellow',
+      image: 'https://i.ebayimg.com/images/g/FPMAAOSwSZNi3m-C/s-l500.jpg',
+    };
+    const resp = await request(app).post('/sodas').send(newSoda);
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "color": "Yellow",
+        "country": "Bahamas",
+        "id": "4",
+        "image": "https://i.ebayimg.com/images/g/FPMAAOSwSZNi3m-C/s-l500.jpg",
+        "name": "Bahamas Goombay Punch",
+      }
+    `);
   });
   afterAll(() => {
     pool.end();

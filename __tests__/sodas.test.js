@@ -73,9 +73,17 @@ describe('sodas controller', () => {
     expect(resp.body.color).toBe('Yellow');
   });
 
-  it.only('GET /sodas/xyz should return a 404', async () => {
+  it('GET /sodas/xyz should return a 404', async () => {
     const resp = await request(app).get('/sodas/456');
     expect(resp.status).toBe(404);
+  });
+
+  it.only('DELETE /sodas/1 should delete soda #1', async () => {
+    const resp = await request(app).delete('/sodas/1');
+    expect(resp.status).toBe(204);
+
+    const getResp = await request(app).get('/sodas/1');
+    expect(getResp.status).toBe(404);
   });
 
   afterAll(() => {

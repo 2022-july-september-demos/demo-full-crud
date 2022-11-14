@@ -78,7 +78,7 @@ describe('sodas controller', () => {
     expect(resp.status).toBe(404);
   });
 
-  it.only('DELETE /sodas/1 should delete soda #1', async () => {
+  it('DELETE /sodas/1 should delete soda #1', async () => {
     const resp = await request(app).delete('/sodas/1');
     expect(resp.status).toBe(204);
 

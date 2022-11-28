@@ -1,9 +1,12 @@
-# fly.toml file generated for soda-api on 2022-11-09T12:16:53-08:00
+# fly.toml file generated for sodas on 2022-11-28T09:13:49-08:00
 
-app = "soda-api"
+app = "sodas"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
+
+[deploy]
+  release_command = "npm run setup-db"
 
 [env]
   PORT = "8080"
